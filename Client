@@ -1,0 +1,17 @@
+ # Import socket module for network communication
+import socket 
+
+# Create a socket object for the client
+client = socket.socket()
+
+# Connect to the server at localhost (127.0.0.1) on port 12346
+client.connect(("127.0.0.1", 12346))  
+
+print("Connected! Type messages below.")
+
+# Loop to keep sending and receiving messages
+while True:
+    msg = input("You: ")                  
+    client.send(msg.encode())            
+    reply = client.recv(1024).decode()    
+    print(f"Server: {reply}")            
